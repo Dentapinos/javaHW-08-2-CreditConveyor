@@ -6,7 +6,6 @@ import java.lang.reflect.AccessFlag;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class Order {
     @Setter(AccessLevel.NONE)
