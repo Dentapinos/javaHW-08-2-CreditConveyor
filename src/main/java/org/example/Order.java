@@ -2,8 +2,6 @@ package org.example;
 
 import lombok.*;
 
-import java.lang.reflect.AccessFlag;
-
 @Setter
 @Getter
 @RequiredArgsConstructor
