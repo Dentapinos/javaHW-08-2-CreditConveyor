@@ -1,30 +1,30 @@
 package org.example;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.lang.reflect.AccessFlag;
 
 @Setter
 @Getter
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Order {
     @Setter(AccessLevel.NONE)
     private int creditRatingAmendment = 0;
 
-    String firstName;
-    String secondName;
-    String surname;
-    int age;
+    private final String firstName;
+    private final String secondName;
+    private final String surname;
+    private final int age;
 
-    Country nationality;
-    Bank bindingSalaryToTheBank;
-    int workExperienceInLastPlace;
-    int totalWorkExperience;
+    private final Country nationality;
+    private final Bank bindingSalaryToTheBank;
+    private final int workExperienceInLastPlace;
+    private final int totalWorkExperience;
 
-    double desiredLoanAmount;
-    int LoanTermInMonths;
-    int salary;
+    private final double desiredLoanAmount;
+    private final int LoanTermInMonths;
+    private final int salary;
 
     public void setCreditRatingAmendment() {
         this.creditRatingAmendment += 1;
