@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.exception.AgeMathException;
+import org.example.exception.HandlerException;
+
 public class AgeMathHandler extends AbstractHandler{
 
     /**
@@ -12,16 +15,16 @@ public class AgeMathHandler extends AbstractHandler{
     public void handle(Order order) throws HandlerException {
         if (order.getAge() > 18 || order.getAge() < 80 ) {
             if (order.getAge() < 21 && order.getDesiredLoanAmount() > 50_000.0) {
-                throw new HandlerException("Отказано! В возрасте до 21 года максимальная сумма кредита 50_000 руб.");
+                throw new AgeMathException("Отказано! В возрасте до 21 года максимальная сумма кредита 50_000 руб.", this);
             } else if (order.getAge() > 75 && order.getDesiredLoanAmount() > 300_000.0) {
-                throw new HandlerException("Отказано! В возрасте свыше 75 лет максимальная сумма кредита 300_000 руб.");
+                throw new AgeMathException("Отказано! В возрасте свыше 75 лет максимальная сумма кредита 300_000 руб.", this);
             } else if (order.getDesiredLoanAmount() > 5_000_000.0) {
-                throw new HandlerException("Отказано! Сумма свыше 5_000_000 руб. не кредитуется");
+                throw new AgeMathException("Отказано! Сумма свыше 5_000_000 руб. не кредитуется", this);
             } else {
                 handler.handle(order);
             }
         } else {
-            throw new HandlerException("Отказано! Кредитование осуществляется в возрасте от 18 до 80");
+            throw new AgeMathException("Отказано! Кредитование осуществляется в возрасте от 18 до 80", this);
         }
     }
 }

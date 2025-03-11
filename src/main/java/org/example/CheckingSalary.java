@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.exception.HandlerException;
+import org.example.exception.SalaryException;
+
 public class CheckingSalary extends AbstractHandler{
 
     /**
@@ -20,9 +23,9 @@ public class CheckingSalary extends AbstractHandler{
                 int recommendedLoanAmount = (order.getSalary() - 13_000) * order.getLoanTermInMonths();
                 if (recommendedLoanAmount > 0){
                     recommendedLoanAmount *= order.getLoanTermInMonths();
-                    throw new HandlerException("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.");
+                    throw new SalaryException("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.", this);
                 } else {
-                    throw new HandlerException("Отказано! Недостаточная сумма зарплаты!");
+                    throw new SalaryException("Отказано! Недостаточная сумма зарплаты!", this);
                 }
             } else {
                 handler.handle(order);
@@ -33,9 +36,9 @@ public class CheckingSalary extends AbstractHandler{
                 int recommendedLoanAmount = order.getSalary() - 16_000;
                 if (recommendedLoanAmount > 0){
                     recommendedLoanAmount *= order.getLoanTermInMonths();
-                    throw new HandlerException("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.");
+                    throw new SalaryException("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.", this);
                 } else {
-                    throw new HandlerException("Отказано! Недостаточная сумма зарплаты!");
+                    throw new SalaryException("Отказано! Недостаточная сумма зарплаты!", this);
                 }
 
             } else {

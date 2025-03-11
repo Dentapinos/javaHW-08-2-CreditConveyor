@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.exception.*;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -40,10 +42,10 @@ public class Main {
          * Изменить общий стаж (totalWorkExperience)
          */
 
-        Order order = new Order("П",
+        Order order = new Order("Пупкин",
                 "Артем",
                 "Сидорович",
-                22,
+                12,
                 Country.RUSSIAN_FEDERATION,
                 Bank.T_BANK,
                 6,
@@ -60,8 +62,8 @@ public class Main {
             correctnessOfEnteredData.handle(order);
         } catch (HandlerException e){
             System.out.println(e.getMessage());
+            System.out.println(e.getClass() + " в классе " + e.getNameErrorClass());
         }
-
     }
 }
 

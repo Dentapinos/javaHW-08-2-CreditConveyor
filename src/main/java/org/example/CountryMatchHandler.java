@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.exception.HandlerException;
+import org.example.exception.MatchCountryException;
+
 import java.util.Objects;
 
 public class CountryMatchHandler extends AbstractHandler {
@@ -21,7 +24,7 @@ public class CountryMatchHandler extends AbstractHandler {
                 order.setCreditRatingAmendment();
                 handler.handle(order);
             } else {
-                throw new HandlerException("Ваша страна не " + Country.RUSSIAN_FEDERATION.getFullName() + " резидентам других стран кредит не выдаем!!!");
+                throw new MatchCountryException("Ваша страна не " + Country.RUSSIAN_FEDERATION.getFullName() + " резидентам других стран кредит не выдаем!!!", this);
             }
         }
     }

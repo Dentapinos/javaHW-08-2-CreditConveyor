@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.exception.HandlerException;
+
 import java.util.Random;
 
 public class Scoring extends AbstractHandler{

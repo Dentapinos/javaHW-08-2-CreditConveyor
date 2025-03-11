@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.exception.EntheredDataException;
+import org.example.exception.HandlerException;
+
 public class CorrectnessOfEnteredData extends AbstractHandler {
 
     /**
@@ -31,7 +34,7 @@ public class CorrectnessOfEnteredData extends AbstractHandler {
         if (notCorrectData.isEmpty()){
             handler.handle(order);
         } else {
-            throw new HandlerException("ОТКАЗАНО!\nНе корректные данные: " + notCorrectData);
+            throw new EntheredDataException("ОТКАЗАНО!\nНе корректные данные: " + notCorrectData, this);
         }
     }
 }

@@ -1,6 +1,7 @@
 package org.example;
 
-import com.sun.jdi.event.ExceptionEvent;
+import org.example.exception.ExperienceOfWorkException;
+import org.example.exception.HandlerException;
 
 public class CheckingExperienceOfWork extends AbstractHandler{
 
@@ -20,14 +21,14 @@ public class CheckingExperienceOfWork extends AbstractHandler{
             if (order.getTotalWorkExperience() >= 12 && order.getWorkExperienceInLastPlace() >= 2){
                 handler.handle(order);
             } else {
-                throw new HandlerException("Недостаточный стаж работы");
+                throw new ExperienceOfWorkException("Недостаточный стаж работы", this);
             }
         } else {
             if (order.getTotalWorkExperience() > 13 && order.getWorkExperienceInLastPlace() >= 6){
                 order.setCreditRatingAmendment();
                 handler.handle(order);
             } else  {
-                System.out.println("Недостаточный стаж работы");
+                throw new ExperienceOfWorkException("Недостаточный стаж работы", this);
             }
         }
     }

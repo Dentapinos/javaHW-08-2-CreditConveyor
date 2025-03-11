@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.exception.FeetOfSheetsException;
+import org.example.exception.HandlerException;
+
 public class CheckingFeetOfSheets  extends AbstractHandler{
     GeneralCreditBasis generalCreditBasis;
 
@@ -18,7 +21,7 @@ public class CheckingFeetOfSheets  extends AbstractHandler{
         if (generalCreditBasis.isClientConscientious(order)) {
             handler.handle(order);
         } else {
-            System.out.println("Вы находитесь в черном списке кредиторов!");
+            throw new FeetOfSheetsException("Вы находитесь в черном списке кредиторов!", this);
         }
     }
 }
