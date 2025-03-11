@@ -12,7 +12,7 @@ public class CountryMatchHandler extends AbstractHandler {
      */
 
     @Override
-    public void handle(Order order) {
+    public void handle(Order order) throws HandlerException {
         System.out.println("Проверка гражданства");
         if (Objects.equals(order.getNationality().getCurrencyCode(), Country.RUSSIAN_FEDERATION.getCurrencyCode())) {
             handler.handle(order);
@@ -21,7 +21,7 @@ public class CountryMatchHandler extends AbstractHandler {
                 order.setCreditRatingAmendment();
                 handler.handle(order);
             } else {
-                System.out.println("Ваша страна не " + Country.RUSSIAN_FEDERATION.getFullName() + " резидентам других стран кредит не выдаем!!!");
+                throw new HandlerException("Ваша страна не " + Country.RUSSIAN_FEDERATION.getFullName() + " резидентам других стран кредит не выдаем!!!");
             }
         }
     }

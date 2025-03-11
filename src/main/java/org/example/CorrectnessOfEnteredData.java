@@ -8,7 +8,7 @@ public class CorrectnessOfEnteredData extends AbstractHandler {
      */
 
     @Override
-    public void handle(Order order) {
+    public void handle(Order order) throws HandlerException {
         System.out.println("Проверка правильности заполнения анкеты");
         StringBuilder notCorrectData = new StringBuilder();
 
@@ -31,8 +31,7 @@ public class CorrectnessOfEnteredData extends AbstractHandler {
         if (notCorrectData.isEmpty()){
             handler.handle(order);
         } else {
-            System.out.println("ОТКАЗАНО!");
-            System.out.println("Не корректные данные: " + notCorrectData);
+            throw new HandlerException("ОТКАЗАНО!\nНе корректные данные: " + notCorrectData);
         }
     }
 }

@@ -12,7 +12,7 @@ public class Scoring extends AbstractHandler{
      */
 
     @Override
-    public void handle(Order order) {
+    public void handle(Order order) throws HandlerException {
         System.out.println("Скоринговый алгоритм");
         int grope = random.nextInt(3);
         if (grope == 0) {

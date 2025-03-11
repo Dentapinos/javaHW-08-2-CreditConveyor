@@ -40,7 +40,7 @@ public class Main {
          * Изменить общий стаж (totalWorkExperience)
          */
 
-        Order order = new Order("Пупкин",
+        Order order = new Order("П",
                 "Артем",
                 "Сидорович",
                 22,
@@ -56,7 +56,12 @@ public class Main {
          * Отправляем заявку на проверку и ожидаем результатов
          */
 
-        correctnessOfEnteredData.handle(order);
+        try {
+            correctnessOfEnteredData.handle(order);
+        } catch (HandlerException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }
 

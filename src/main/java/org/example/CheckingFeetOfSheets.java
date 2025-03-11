@@ -13,7 +13,7 @@ public class CheckingFeetOfSheets  extends AbstractHandler{
      */
 
     @Override
-    public void handle(Order order) {
+    public void handle(Order order) throws HandlerException {
         System.out.println("Проверка в базе истории кредитования граждан");
         if (generalCreditBasis.isClientConscientious(order)) {
             handler.handle(order);

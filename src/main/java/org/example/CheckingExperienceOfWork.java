@@ -1,5 +1,7 @@
 package org.example;
 
+import com.sun.jdi.event.ExceptionEvent;
+
 public class CheckingExperienceOfWork extends AbstractHandler{
 
     /**
@@ -11,14 +13,14 @@ public class CheckingExperienceOfWork extends AbstractHandler{
      */
 
     @Override
-    public void handle(Order order) {
+    public void handle(Order order) throws HandlerException {
         System.out.println("Проверка стажа работы");
 
         if (order.getBindingSalaryToTheBank() == Bank.SBER_BANK){
             if (order.getTotalWorkExperience() >= 12 && order.getWorkExperienceInLastPlace() >= 2){
                 handler.handle(order);
             } else {
-                System.out.println("Недостаточный стаж работы");
+                throw new HandlerException("Недостаточный стаж работы");
             }
         } else {
             if (order.getTotalWorkExperience() > 13 && order.getWorkExperienceInLastPlace() >= 6){

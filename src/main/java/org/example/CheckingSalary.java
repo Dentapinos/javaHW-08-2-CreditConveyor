@@ -11,7 +11,7 @@ public class CheckingSalary extends AbstractHandler{
      */
 
     @Override
-    public void handle(Order order) {
+    public void handle(Order order) throws HandlerException {
         System.out.println("Проверка заработной платы");
 
         if (order.getBindingSalaryToTheBank().equals(Bank.SBER_BANK)){
@@ -20,9 +20,9 @@ public class CheckingSalary extends AbstractHandler{
                 int recommendedLoanAmount = (order.getSalary() - 13_000) * order.getLoanTermInMonths();
                 if (recommendedLoanAmount > 0){
                     recommendedLoanAmount *= order.getLoanTermInMonths();
-                    System.out.println("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.");
+                    throw new HandlerException("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.");
                 } else {
-                    System.out.println("Отказано! Недостаточная сумма зарплаты!");
+                    throw new HandlerException("Отказано! Недостаточная сумма зарплаты!");
                 }
             } else {
                 handler.handle(order);
@@ -33,9 +33,9 @@ public class CheckingSalary extends AbstractHandler{
                 int recommendedLoanAmount = order.getSalary() - 16_000;
                 if (recommendedLoanAmount > 0){
                     recommendedLoanAmount *= order.getLoanTermInMonths();
-                    System.out.println("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.");
+                    throw new HandlerException("Отказано! Рекомендуем сумму кредитования " + recommendedLoanAmount + "руб. сроком на " + order.getLoanTermInMonths() + " мес.");
                 } else {
-                    System.out.println("Отказано! Недостаточная сумма зарплаты!");
+                    throw new HandlerException("Отказано! Недостаточная сумма зарплаты!");
                 }
 
             } else {
