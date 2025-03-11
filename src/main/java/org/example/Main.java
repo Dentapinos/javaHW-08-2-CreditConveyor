@@ -62,7 +62,7 @@ public class Main {
             correctnessOfEnteredData.handle(order);
         } catch (HandlerException e){
             System.out.println(e.getMessage());
-            System.out.println(e.getClass() + " в классе " + e.getNameErrorClass());
+            System.out.println("исключение " + e.getClass().getName() + " в классе " + e.getNameErrorClass());
         }
     }
 }
